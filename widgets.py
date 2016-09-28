@@ -52,16 +52,19 @@ class FroalaEditor(widgets.Textarea):
 
     def render(self, name, value, attrs=None):
         html = super(FroalaEditor, self).render(name, value, attrs)
-        el_id = self.build_attrs(attrs).get('id')
+        # el_id = self.build_attrs(attrs).get('id')
+        # eigenTunes
+        el_id = 'div#question_form_content p textarea, div#post_edit_form_content p textarea'
         html += self.trigger_froala(el_id, self.get_options())
         return mark_safe(html)
 
     def trigger_froala(self, el_id, options):
 
+        # eigenTunes
         str = """
         <script>
             $(function(){
-                $('#%s').froalaEditor(%s)
+                $('%s').froalaEditor(%s)
             });
         </script>""" % (el_id, options)
         return str
