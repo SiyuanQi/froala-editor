@@ -1,3 +1,5 @@
+default_app_config = 'froala_editor.apps.FroalaEditorConfig'
+
 PLUGINS = (
     'align', 'char_counter', 'code_beautifier', 'code_view', 'colors', 'draggable', 'emoticons', 'entities', 'file', 'font_family',
     'font_size', 'fullscreen', 'image', 'image_manager', 'inline_style', 'line_breaker', 'link', 'lists',

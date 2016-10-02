@@ -50,23 +50,50 @@ class FroalaEditor(widgets.Textarea):
         json_options = json_options.replace('"csrftokenplaceholder"', 'getCookie("csrftoken")')
         return json_options
 
+    def get_events(self):
+        image_removed = """
+        .on('froalaEditor.image.removed', function (e, editor, $img) {
+            $.ajax({
+                // Request method.
+                method: "GET",
+
+                // Request URL.
+                url: "/froala_editor/image/delete/",
+
+                // Request params.
+                data: {
+                    src: $img.attr('src')
+                }
+            })
+            .done(function (data) {
+                console.log(data);
+                console.log('image was deleted');
+            })
+            .fail(function () {
+                console.log('image delete problem');
+            })
+        })
+        """
+        events = image_removed
+        return events
+
     def render(self, name, value, attrs=None):
         html = super(FroalaEditor, self).render(name, value, attrs)
         # el_id = self.build_attrs(attrs).get('id')
         # eigenTunes
         el_id = 'div#question_form_content p textarea, div#post_edit_form_content p textarea'
-        html += self.trigger_froala(el_id, self.get_options())
+        html += self.trigger_froala(el_id, self.get_options(), self.get_events())
         return mark_safe(html)
 
-    def trigger_froala(self, el_id, options):
+    def trigger_froala(self, el_id, options, events):
 
         # eigenTunes
         str = """
         <script>
             $(function(){
-                $('%s').froalaEditor(%s)
+                $('%s').froalaEditor(%s)%s
             });
-        </script>""" % (el_id, options)
+        </script>""" % (el_id, options, events)
         return str
 
     def _media(self):
