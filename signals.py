@@ -9,7 +9,6 @@ from .models import FroalaImage
 
 @receiver(pre_delete, sender=FroalaImage)
 def delete_froala_image(sender, instance, using, **kwargs):
-    print('signal triggered!')
     if settings.ENVIRONMENT == 'local':
         os.remove(os.path.join(settings.MEDIA_ROOT, instance.image.name))
     elif settings.ENVIRONMENT == 'production':

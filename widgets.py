@@ -78,6 +78,7 @@ class FroalaEditor(widgets.Textarea):
         return events
 
     def render(self, name, value, attrs=None):
+        attrs['froala'] = True
         html = super(FroalaEditor, self).render(name, value, attrs)
         # el_id = self.build_attrs(attrs).get('id')
         # eigenTunes
