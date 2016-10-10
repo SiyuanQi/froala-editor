@@ -99,14 +99,15 @@ class FroalaEditor(widgets.Textarea):
 
     def _media(self):
         css = {
-            'all': ('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css',
+            'all': ('eigenTunes/css/font-awesome-4.6.3/css/font-awesome.min.css',
                     'froala_editor/css/froala_editor.min.css', 'froala_editor/css/froala_style.min.css',
                     'froala_editor/css/froala-django.css')
         }
         js = ('froala_editor/js/froala_editor.min.js', 'froala_editor/js/froala-django.js',)
 
         if self.include_jquery:
-            js = ('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js',) + js
+            pass
+            # js = ('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js',) + js
 
         if self.theme:
             css['all'] += ('froala_editor/css/themes/' + self.theme + '.css',)
