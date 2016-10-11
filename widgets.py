@@ -1,8 +1,10 @@
+import json
+
+from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.forms import widgets, Media
 from django.utils.safestring import mark_safe
-from django.conf import settings
-import json
+
 from . import PLUGINS, PLUGINS_WITH_CSS
 
 
@@ -51,6 +53,8 @@ class FroalaEditor(widgets.Textarea):
         return json_options
 
     def get_events(self):
+        # This events calls a url from server when a image is deleted from the editor.
+        # The server then deletes the image uploaded.
         image_removed = """
         .on('froalaEditor.image.removed', function (e, editor, $img) {
             $.ajax({
@@ -106,6 +110,7 @@ class FroalaEditor(widgets.Textarea):
         js = ('froala_editor/js/froala_editor.min.js', 'froala_editor/js/froala-django.js',)
 
         if self.include_jquery:
+            # Since eigenTunes superbase page includes jquery library, we do not need to load it twice
             pass
             # js = ('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js',) + js
 

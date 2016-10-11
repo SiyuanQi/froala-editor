@@ -32,7 +32,7 @@ def video_upload_to(instance, filename):
 # https://docs.djangoproject.com/en/1.9/ref/contrib/contenttypes/
 class FroalaMedia(models.Model):
     id = models.AutoField(primary_key=True)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)  # Allow to be saved without this foreign key
     object_id = models.PositiveIntegerField(null=True, blank=True)
     filename = models.CharField(max_length=250, default=None)
     content_object = GenericForeignKey('content_type', 'object_id')
