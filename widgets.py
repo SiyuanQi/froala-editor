@@ -102,12 +102,20 @@ class FroalaEditor(widgets.Textarea):
         return str
 
     def _media(self):
+        # css = {
+        #     'all': ('eigenTunes/css/font-awesome-4.6.3/css/font-awesome.min.css',
+        #             'froala_editor/css/froala_editor.min.css', 'froala_editor/css/froala_style.min.css',
+        #             'froala_editor/css/froala-django.css')
+        # }
+        # js = ('froala_editor/js/froala_editor.min.js', 'froala_editor/js/froala-django.js',)
+
         css = {
             'all': ('eigenTunes/css/font-awesome-4.6.3/css/font-awesome.min.css',
-                    'froala_editor/css/froala_editor.min.css', 'froala_editor/css/froala_style.min.css',
+                    'froala_editor/css/froala_editor.css', 'froala_editor/css/froala_style.min.css',
                     'froala_editor/css/froala-django.css')
         }
-        js = ('froala_editor/js/froala_editor.min.js', 'froala_editor/js/froala-django.js',)
+        # js = ('froala_editor/js/froala_editor.min.js', 'froala_editor/js/froala_editor.pkgd.js', 'froala_editor/js/froala-django.js',)
+        js = ('froala_editor/js/froala_editor.js', 'froala_editor/js/froala-django.js',)
 
         if self.include_jquery:
             # Since eigenTunes superbase page includes jquery library, we do not need to load it twice
