@@ -49,6 +49,9 @@ class FroalaSheet(FroalaMedia):
     class Meta:
         db_table = 'froala_sheet'
 
+    def __str__(self):
+        return 'FroalaSheet: {}'.format(str(self.sheet))
+
 
 class FroalaImageManager(models.Manager):
     def delete_from_src(self, src):
@@ -74,12 +77,18 @@ class FroalaImage(FroalaMedia):
     class Meta:
         db_table = 'froala_images'
 
+    def __str__(self):
+        return 'FroalaImage: {}'.format(str(self.image))
+
 
 class FroalaAudio(FroalaMedia):
     audio = models.FileField(upload_to=audio_upload_to, verbose_name='音频')
 
     class Meta:
         db_table = 'froala_audio'
+
+    def __str__(self):
+        return 'FroalaAudio: {}'.format(str(self.image))
 
     def as_json(self):
         return dict(id=self.id, url=str(self.audio), name=self.filename)
@@ -90,6 +99,9 @@ class FroalaVideo(FroalaMedia):
 
     class Meta:
         db_table = 'froala_video'
+
+    def __str__(self):
+        return 'FroalaVideo: {}'.format(str(self.video))
 
     def as_json(self):
         return dict(id=self.id, url=str(self.video), name=self.filename)
